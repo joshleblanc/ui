@@ -12,7 +12,6 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.9.2');
-  api.use('svelte:compiler');
   api.use('ecmascript');
   api.mainModule('ui.js');
 });
