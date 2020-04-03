@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { autorun } from 'meteor/cereal:reactive-render';
 import AccountButtons from './AccountButtons';
+import AppSwitcher from "./app_switcher/AppSwitcher";
 
 const styles = theme => ({
   appBar: {
@@ -31,6 +32,14 @@ const styles = theme => ({
 @withStyles(styles)
 @autorun
 export default class extends React.Component {
+  state = {
+    appSwitcherOpen: false
+  }
+
+  openAppSwitcher = () => {
+
+  }
+
   render() {
     const { classes, title } = this.props;
     return(
@@ -49,6 +58,7 @@ export default class extends React.Component {
             {title}
           </Typography>
           <div className={classes.grow} />
+          <AppSwitcher />
           <AccountButtons />
         </Toolbar>
       </AppBar>
