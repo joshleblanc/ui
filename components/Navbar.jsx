@@ -32,7 +32,6 @@ const styles = theme => ({
 @autorun
 export default class extends React.Component {
   render() {
-    console.log(State.get('drawerOpen'));
     const { classes, title } = this.props;
     return(
       <AppBar position={"fixed"} className={classes.appBar}>
