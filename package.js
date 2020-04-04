@@ -14,7 +14,9 @@ Package.onUse(function(api) {
   api.versionsFrom('1.9.2');
   api.use('ecmascript');
   api.mainModule('ui.js');
+  api.addAssets("public/resources/background-colored.jpg", "client")
 });
+
 
 Npm.depends({
   "@babel/core": "7.4.3",
