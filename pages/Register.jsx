@@ -4,7 +4,6 @@ import {createStyles, withStyles} from "@material-ui/core";
 import { withSnackbar } from "notistack";
 import Typography from "@material-ui/core/Typography";
 import { RegisterForm } from "../components/register/RegisterForm";
-import { AUTH_CLIP_PATH_STYLE } from '../lib/constants';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import Grid from "@material-ui/core/Grid";
@@ -55,7 +54,10 @@ class RegisterComponent extends React.Component {
       return;
     }
 
-    Meteor.call("user.create", values.email, values.password, err => {
+    Accounts.createUser({
+      email: values.email,
+      password: values.password
+    }, err => {
       if(err) {
         form.setSubmitting(false);
         enqueueSnackbar(`Error while signing up: ${err.message}`, { variant: "error" });
