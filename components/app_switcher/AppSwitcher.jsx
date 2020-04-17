@@ -6,7 +6,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { app } from '../../lib/crayon';
 import ListItemText from "@material-ui/core/ListItemText";
 import SantaIcon from "../icons/SantaIcon";
 import GamesIcon from '@material-ui/icons/Games';
@@ -43,7 +42,7 @@ export default class extends React.Component {
             <List>
               {
                 apps.filter(a => !window.location.pathname.startsWith(a.url)).map(a => (
-                  <ListItem button key={a.name} onClick={() => app.navigate(a.url)}>
+                  <ListItem button component="a" key={a.name} href={a.url}>
                     <ListItemAvatar>
                       {a.icon && <a.icon />}
                     </ListItemAvatar>
