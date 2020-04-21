@@ -1,5 +1,4 @@
 export class Model {
-  [key: string]: any;
   _id?: string;
 
   static fromDoc(doc:any) {
