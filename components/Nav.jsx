@@ -5,6 +5,7 @@ import {drawerWidth} from '../lib/constants';
 import {State} from '../lib/state';
 import {withStyles} from '@material-ui/styles';
 import {autorun} from 'meteor/cereal:reactive-render';
+import { Toolbar } from './base/Toolbar';
 
 const styles = theme => ({
   drawer: {
@@ -35,7 +36,7 @@ export default class extends React.Component {
   render() {
     const {container, classes, theme, children} = this.props;
     return (
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer}>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -55,6 +56,7 @@ export default class extends React.Component {
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
+
           <Drawer
             classes={{
               paper: classes.drawerPaper,
@@ -62,6 +64,7 @@ export default class extends React.Component {
             variant="permanent"
             open
           >
+            <Toolbar />
             {children}
           </Drawer>
         </Hidden>
