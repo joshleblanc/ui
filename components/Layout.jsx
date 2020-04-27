@@ -18,12 +18,6 @@ export default props => {
         <BrowserRouter basename={basename}>
           <CssBaseline/>
           <Switch>
-            <Route exact path={"/register"}>
-              <Register />
-            </Route>
-            <Route exact path={"/login"}>
-              <Login />
-            </Route>
             <Route>
               <Root>
                 <Navbar/>

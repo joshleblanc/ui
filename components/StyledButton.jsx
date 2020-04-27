@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import {createStyles, makeStyles} from "@material-ui/core";
 import green from '@material-ui/core/colors/green';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -27,14 +28,17 @@ const useStyles = makeStyles(() =>
 const StyledButton = ({loading, children, ...props}) => {
   const classes = useStyles();
   return(
-    <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <Button {...props}>
-          {children}
-        </Button>
-        {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+    <FormControl margin={"dense"}>
+      <div className={classes.root}>
+        <div className={classes.wrapper}>
+          <Button {...props}>
+            {children}
+          </Button>
+          {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+        </div>
       </div>
-    </div>
+    </FormControl>
+
   );
 };
 

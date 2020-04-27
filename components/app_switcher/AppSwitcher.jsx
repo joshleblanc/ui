@@ -1,5 +1,6 @@
 import React from "react";
 import AppSwitcherButton from "./AppSwitcherButton";
+import Toolbar from "@material-ui/core/Toolbar";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -41,7 +42,7 @@ export default class extends React.Component {
             <List>
               {
                 apps.filter(a => !window.location.pathname.startsWith(a.url)).map(a => (
-                  <ListItem button component={"a"} href={a.url}>
+                  <ListItem button component="a" key={a.name} href={a.url}>
                     <ListItemAvatar>
                       {a.icon && <a.icon />}
                     </ListItemAvatar>
