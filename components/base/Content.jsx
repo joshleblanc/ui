@@ -1,6 +1,7 @@
 import React from 'react';
 import {Toolbar} from "./Toolbar";
 import {makeStyles} from "@material-ui/styles";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -15,7 +16,10 @@ export const Content = ({ children }) => {
   return(
     <main className={classes.content}>
       <Toolbar />
-      {children}
+      <Container>
+        {children}
+      </Container>
+
     </main>
   )
 }
