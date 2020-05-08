@@ -13,9 +13,9 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
 const apps = [
-  { name: "Gnashblade", url: "/gnashblade", icon: AccountBalanceIcon },
-  { name: "Famtime", url: "/famtime", icon: GamesIcon },
-  { name: "Secret Santa", url: "/secret-santa", icon: SantaIcon }
+  { name: "Gnashblade", url: "https://gnashbla.de", icon: AccountBalanceIcon },
+  { name: "Famtime", url: "https://famti.me", icon: GamesIcon },
+  { name: "Secret Santa", url: "https://secret-santa.grep.sh", icon: SantaIcon }
 ]
 
 export default class extends React.Component {
