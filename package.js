@@ -1,6 +1,6 @@
 Package.describe({
   name: 'cereal:ui',
-  version: '0.0.4',
+  version: '0.0.5',
   // Brief, one-line summary of the package.
   summary: 'Common UI elements',
   description: "Common UI elements",
