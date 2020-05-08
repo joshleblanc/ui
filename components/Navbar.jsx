@@ -4,12 +4,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {withStyles} from '@material-ui/styles';
 import { drawerWidth } from '../lib/constants';
 import MenuIcon from '@material-ui/icons/Menu';
-import { State } from '../lib/state';
+import {State, StateContext} from '../lib/state';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { autorun } from 'meteor/cereal:reactive-render';
 import AccountButtons from './AccountButtons';
 import AppSwitcher from "./app_switcher/AppSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 const styles = theme => ({
   appBar: {
@@ -32,16 +33,16 @@ const styles = theme => ({
 @withStyles(styles)
 @autorun
 export default class extends React.Component {
+  static contextType = StateContext;
+
   state = {
     appSwitcherOpen: false
   }
 
-  openAppSwitcher = () => {
-
-  }
-
   render() {
     const { classes, title } = this.props;
+    const { openDrawer } = this.context;
+
     return(
       <AppBar position={"fixed"} className={classes.appBar}>
         <Toolbar>
@@ -49,7 +50,7 @@ export default class extends React.Component {
             color="inherit"
             aria-label="open drawer"
             edge="start"
-            onClick={() => State.set('drawerOpen', !State.get('drawerOpen'))}
+            onClick={openDrawer}
             className={classes.menuButton}
           >
             <MenuIcon />
@@ -60,6 +61,7 @@ export default class extends React.Component {
           <div className={classes.grow} />
           <AppSwitcher />
           <AccountButtons />
+          <ThemeToggle />
         </Toolbar>
       </AppBar>
     )

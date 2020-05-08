@@ -2,7 +2,7 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import {drawerWidth} from '../lib/constants';
-import {State} from '../lib/state';
+import {State, StateContext} from '../lib/state';
 import {withStyles} from '@material-ui/styles';
 import {autorun} from 'meteor/cereal:reactive-render';
 import { Toolbar } from './base/Toolbar';
@@ -33,7 +33,9 @@ const styles = theme => ({
 @withStyles(styles, {withTheme: true})
 @autorun
 export default class extends React.Component {
+  static contextType = StateContext;
   render() {
+    const { drawerOpen, closeDrawer } = this.context;
     const {container, classes, theme, children} = this.props;
     return (
       <nav className={classes.drawer}>
@@ -43,8 +45,8 @@ export default class extends React.Component {
             container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={State.get('drawerOpen')}
-            onClose={() => State.set('drawerOpen', false)}
+            open={drawerOpen}
+            onClose={closeDrawer}
             classes={{
               paper: classes.drawerPaper,
             }}
