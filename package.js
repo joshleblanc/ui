@@ -20,12 +20,6 @@ Package.onUse(function(api) {
   api.addAssets("public/resources/background-colored.jpg", "client")
 });
 
-
-Npm.depends({
-  "@babel/core": "7.4.3",
-  "@babel/plugin-proposal-decorators": "7.8.3"
-});
-
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
