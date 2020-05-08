@@ -23,7 +23,7 @@ class LoginComponent extends React.Component {
   }
 
   loginUser(values, form) {
-    const { enqueueSnackbar } = this.props;
+    const { enqueueSnackbar, history } = this.props;
 
     Meteor.loginWithPassword(values.email, values.password, err => {
       if(err) {
@@ -32,6 +32,7 @@ class LoginComponent extends React.Component {
         return;
       }
       enqueueSnackbar("Logged in successfully!");
+      history.push("/");
     });
   }
 
