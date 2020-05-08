@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {withStyles} from '@material-ui/styles';
 import { drawerWidth } from '../lib/constants';
 import MenuIcon from '@material-ui/icons/Menu';
-import {State, StateContext} from '../lib/state';
+import {StateContext} from '../lib/state';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { autorun } from 'meteor/cereal:reactive-render';
