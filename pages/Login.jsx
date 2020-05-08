@@ -1,30 +1,19 @@
 import * as React from 'react';
-import { withStyles, Typography } from '@material-ui/core';
-import { withSnackbar } from 'notistack';
-import { autorun } from 'meteor/cereal:reactive-render';
-import { authenticationStyles } from './Register';
+import { Typography } from '@material-ui/core';
+import {useSnackbar} from 'notistack';
+import {useAuthenticationStyles} from './Register';
 import { LoginForm } from '../components/login/LoginForm';
 import { Meteor } from 'meteor/meteor';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import PaddedPaper from "../components/PaddedPaper";
 
-@withStyles(authenticationStyles)
-@withSnackbar
-@withRouter
-@autorun
-class LoginComponent extends React.Component {
-  componentDidMount() {
-    document.body.style.overflow = "hidden";
-  }
-
-  componentWillUnmount() {
-    document.body.style.overflow = "auto";
-  }
-
-  loginUser(values, form) {
-    const { enqueueSnackbar, history } = this.props;
-
+export const Login = props => {
+  const { includeRegistration = true } = props;
+  const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
+  const classes = useAuthenticationStyles();
+  const loginUser = React.useCallback((values, form) => {
     Meteor.loginWithPassword(values.email, values.password, err => {
       if(err) {
         form.setSubmitting(false);
@@ -34,29 +23,21 @@ class LoginComponent extends React.Component {
       enqueueSnackbar("Logged in successfully!");
       history.push("/");
     });
-  }
-
-  render() {
-    const { classes, includeRegistration = true } = this.props;
-
-    return (
-      <Grid container className={classes.root} justify={"center"}>
-        <Grid item className={classes.container}>
-          <PaddedPaper>
-            <Typography variant={"h2"}>Log In</Typography>
-            <Typography variant={"h6"} paragraph>To your account!</Typography>
-            <LoginForm submitHandler={(values, form) => this.loginUser(values, form)} />
-            {
-              includeRegistration && <Typography variant={"body1"}>
-                Don't have an account yet? <Link to={"/register"}>Create one</Link> now!
-              </Typography>
-            }
-
-          </PaddedPaper>
-        </Grid>
+  }, [])
+  return(
+    <Grid container className={classes.root} justify={"center"}>
+      <Grid item className={classes.container}>
+        <PaddedPaper>
+          <Typography variant={"h2"}>Log In</Typography>
+          <Typography variant={"h6"} paragraph>To your account!</Typography>
+          <LoginForm submitHandler={loginUser} />
+          {
+            includeRegistration && <Typography variant={"body1"}>
+              Don't have an account yet? <Link to={"/register"}>Create one</Link> now!
+            </Typography>
+          }
+        </PaddedPaper>
       </Grid>
-    )
-  }
+    </Grid>
+  )
 }
-
-export const Login = LoginComponent;

@@ -2,23 +2,19 @@ import {ThemeProvider} from "@material-ui/styles";
 import getTheme from "../lib/theme";
 import React from "react";
 import {SnackbarProvider} from "notistack";
-import {StateContext} from "../lib/state";
-import { autorun } from 'meteor/cereal:reactive-render';
+import {useState} from "../lib/state";
+import { useTracker } from 'meteor/react-meteor-data';
 
-@autorun
-export default class extends React.Component {
-  static contextType = StateContext;
+export default props => {
+  const { children } = props;
+  const state = useState();
+  const { theme } = useTracker(() => ({ theme: state.theme }));
+  return(
+    <ThemeProvider theme={getTheme(theme)}>
+      <SnackbarProvider>
+        {children}
+      </SnackbarProvider>
+    </ThemeProvider>
+  )
 
-  render() {
-    const { children } = this.props;
-    const { theme } = this.context;
-    console.log(theme);
-    return(
-      <ThemeProvider theme={getTheme(theme)}>
-        <SnackbarProvider>
-          {children}
-        </SnackbarProvider>
-      </ThemeProvider>
-    )
-  }
 }

@@ -1,24 +1,20 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { autorun } from 'meteor/cereal:reactive-render';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { useUser } from '../hooks/useUser';
 
-@autorun
-export default class extends React.Component {
-
-  logout = () => {
+export default () => {
+  const user = useUser();
+  const logout = React.useCallback(() => {
     Meteor.logout();
-  }
-
-  render() {
-    if(Meteor.userId()) {
-      return <Button color="inherit" onClick={this.logout}>Logout</Button>
-    } else if(Meteor.isClient && Meteor.loggingIn()) {
-      return <LinearProgress />
-    } else {
-      return <Button color="inherit" component={Link} to="/login">Login</Button>
-    }
+  }, []);
+  if(user) {
+    return <Button color="inherit" onClick={logout}>Logout</Button>
+  } else if(Meteor.isClient && Meteor.loggingIn()) {
+    return <LinearProgress />
+  } else {
+    return <Button color="inherit" component={Link} to="/login">Login</Button>
   }
 }
