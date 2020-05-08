@@ -6,9 +6,7 @@ import Nav from "./Nav";
 import {Providers} from "./Providers";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {Root} from "./base/Root";
-import {Register} from "../pages/Register";
 import { Switch } from 'react-router-dom';
-import {Login} from "../pages/Login";
 
 export default props => {
   const {basename, Routes, DrawerItems} = props;

@@ -36,7 +36,7 @@ class LoginComponent extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, includeRegistration = true } = this.props;
 
     return (
       <Grid container className={classes.root} justify={"center"}>
@@ -45,9 +45,12 @@ class LoginComponent extends React.Component {
             <Typography variant={"h2"}>Log In</Typography>
             <Typography variant={"h6"} paragraph>To your account!</Typography>
             <LoginForm submitHandler={(values, form) => this.loginUser(values, form)} />
-            <Typography variant={"body1"}>
-              Don't have an account yet? <Link to={"/register"}>Create one</Link> now!
-            </Typography>
+            {
+              includeRegistration && <Typography variant={"body1"}>
+                Don't have an account yet? <Link to={"/register"}>Create one</Link> now!
+              </Typography>
+            }
+
           </PaddedPaper>
         </Grid>
       </Grid>

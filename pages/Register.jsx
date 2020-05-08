@@ -11,14 +11,7 @@ import PaddedPaper from "../components/PaddedPaper";
 
 export const authenticationStyles = theme => createStyles({
   root: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    background: "url('/packages/cereal_ui/public/resources/background-colored.jpg')",
-    backgroundSize: "cover",
-    overflow: "hidden"
+
   },
   container: {
     marginTop: "auto",
