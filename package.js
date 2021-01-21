@@ -1,6 +1,6 @@
 Package.describe({
   name: 'cereal:ui',
-  version: '0.0.6',
+  version: '0.0.7',
   // Brief, one-line summary of the package.
   summary: 'Common UI elements',
   description: "Common UI elements",
@@ -14,7 +14,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.9.2');
   api.use('ecmascript@0.14.3');
-  api.use('typescript@3.7.6');
+  api.use('typescript@4.1.2');
   api.use('react-meteor-data@2.1.0')
   api.mainModule('ui.js');
   api.addAssets("public/resources/background-colored.jpg", "client")
